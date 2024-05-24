@@ -15,13 +15,14 @@ class EventResource extends JsonResource
     public function toArray(Request $request): array
     {
         //Capa de trasformacion 
-        return[
-            'id' => $this->id, 
-            'event_name' => $this->event_name, 
-            'start_date' => $this->start_date, 
-            'end_date' => $this->end_date, 
-            'description' => $this->description, 
-            'user_id' => $this->user_id, 
+        return [
+            'id' => $this->id,
+            'event_name' => $this->event_name,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'time' => $this->time,
+            'description' => $this->description,
+            'user_id' => $this->user_id,
         ];
     }
 }

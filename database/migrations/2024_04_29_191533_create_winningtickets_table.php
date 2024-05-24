@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('winning_number');
             $table->string('description');
             $table->string('winning_name');
+            $table->string('phone'); //telefono 
             $table->date('game_date');
             $table->timestamps();
         });

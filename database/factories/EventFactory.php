@@ -21,6 +21,7 @@ class EventFactory extends Factory
             'event_name' => fake()->name(),
             'start_date' => fake()->date(),
             'end_date' => fake()->date(),
+            'time' => fake()->time(),
             'description' => fake()->text(),
             'user_id' => User::pluck('id')->random(),
         ];

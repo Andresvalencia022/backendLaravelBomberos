@@ -17,9 +17,10 @@ class WinningTicketFactory extends Factory
     public function definition(): array
     {
         return [
-            'winning_number' => fake()->randomNumber(1,200),
+            'winning_number' => fake()->randomNumber(1,2000),
             'description' => fake()->text(),
             'winning_name' => fake()->name(),
+            'phone' => fake()->phoneNumber('+5734567891'),
             'game_date' => fake()->date(),
         ];
     }
