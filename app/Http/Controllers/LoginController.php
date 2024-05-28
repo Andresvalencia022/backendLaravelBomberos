@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserResource;
 use App\Models\User;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use App\Http\Resources\UserResource;
 
-class Login extends Controller
+class LoginController extends Controller
 {
     public function login (Request $request){
         
@@ -70,6 +72,7 @@ class Login extends Controller
         'email' => $request->email,
         'password' => $request->password,
         'post' => $request->post,
+        'state' => 1,
         'email_verified_at' => now(),
         'remember_token' => str::random(10)
     ]);

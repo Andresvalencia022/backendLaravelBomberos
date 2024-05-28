@@ -14,6 +14,7 @@ class Winningticket extends Model
         'winning_number',
         'description',
         'winning_name',
+        'phone',
         'game_date',
     ];
 }

@@ -4,17 +4,23 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NewsResource;
-use App\Models\News as ModelsNews;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 
-class News extends Controller
+class NewsController extends Controller
 {
+
+
+    public function index(){
+        return NewsResource::collection(News::latest()->paginate(5));
+    }
+
     //Registrar  
     public function store(Request $request)
     {
         //Crear una nuevo Product y lo conserva en la base de datos.
-        $News = ModelsNews::create([
+        $News = News::create([
             'title_news' => $request->title_news,
             'info' => $request->info,
             'name_image' => $request->name_image,
@@ -27,19 +33,19 @@ class News extends Controller
     }
 
 
-    public function show(ModelsNews $ModelsNews)
-    {
-        //Busca un registro
-        //Se crea una nueva instancia 
-        return new NewsResource($ModelsNews);
-    }
+    // public function show(ModelsNews $ModelsNews)
+    // {
+    //     //Busca un registro
+    //     //Se crea una nueva instancia 
+    //     return new NewsResource($ModelsNews);
+    // }
 
 
     // Actualizar 
-    public function update(Request $request, ModelsNews $ModelsNews)
+    public function update(Request $request, News $news)
     {
         //Actualizar registro
-        $ModelsNews->update($request->only([
+        $news->update($request->only([
             'title_news',
             'info',
             'name_image',
@@ -47,14 +53,14 @@ class News extends Controller
             'user_id',
         ]));
 
-        return new NewsResource($ModelsNews);
+        return new NewsResource($news);
     }
 
     //Eliminar
-    public function destroy(ModelsNews  $ModelsNews)
+    public function destroy( News $news)
     {
         // Si la eliminación tiene éxito, el método delete() devuelve true y entra a la condicion
-        if ($ModelsNews->delete()) {
+        if ($news->delete()) {
             return response()->json([ //se devuelve una respuesta JSON con un código de estado HTTP 204  de éxito
                 'message' => 'Success'
             ], 204);

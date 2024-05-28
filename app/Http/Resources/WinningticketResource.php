@@ -19,6 +19,7 @@ class WinningticketResource extends JsonResource
             'id' => $this->id, 
             'winning_number' => $this->winning_number, 
             'description' => $this->description, 
+            'phone' => $this->phone, 
             'winning_name' => $this->winning_name, 
             'game_date' => $this->game_date, 
         ];

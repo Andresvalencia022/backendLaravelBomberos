@@ -30,12 +30,12 @@ class EventController  extends Controller
     }
     
 
-    public function show(ModelsEvent $ModelsEvent)
-    {
-       //Busca un registro
-       //Se crea una nueva instancia 
-       return new EventResource($ModelsEvent);
-    }
+    // public function show(ModelsEvent $ModelsEvent)
+    // {
+    //    //Busca un registro
+    //    //Se crea una nueva instancia 
+    //    return new EventResource($ModelsEvent);
+    // }
 
 
     // Actualizar 

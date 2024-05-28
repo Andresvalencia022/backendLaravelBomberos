@@ -4,18 +4,26 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\WinningticketResource;
-use App\Models\Winningticket as ModelsWinningticket;
+use App\Models\Winningticket;
 use Illuminate\Http\Request;
 
-class Winningticket extends Controller
+class WinningticketController extends Controller
 {
+
+     
+    public function index(){
+        return WinningticketResource::collection(Winningticket::latest()->paginate(5));
+    }
+
+
       //Registrar  
       public function store(Request $request)
       {
           //Crear una nuevo Product y lo conserva en la base de datos.
-          $Winningticket = ModelsWinningticket::create([
+          $Winningticket = Winningticket::create([
               'winning_number' => $request->winning_number,
               'description' => $request->description,
+              'phone' => $request->phone,
               'winning_name' => $request->winning_name,
               'game_date' => $request->game_date
           ]);
@@ -25,33 +33,34 @@ class Winningticket extends Controller
       }
   
   
-      public function show(ModelsWinningticket $ModelsWinningticket)
-      {
-          //Busca un registro
-          //Se crea una nueva instancia 
-          return new WinningticketResource($ModelsWinningticket);
-      }
+    //   public function show(ModelsWinningticket $ModelsWinningticket)
+    //   {
+    //       //Busca un registro
+    //       //Se crea una nueva instancia 
+    //       return new WinningticketResource($ModelsWinningticket);
+    //   }
   
   
       // Actualizar 
-      public function update(Request $request, ModelsWinningticket $ModelsWinningticket)
+      public function update(Request $request, Winningticket $Winningticket)
       {
           //Actualizar registro
-          $ModelsWinningticket->update($request->only([
+          $Winningticket->update($request->only([
             'winning_number',
             'description',
+            'phone',
             'winning_name',
             'game_date',
           ]));
   
-          return new WinningticketResource($ModelsWinningticket);
+          return new WinningticketResource($Winningticket);
       }
   
       //Eliminar
-      public function destroy(ModelsWinningticket  $ModelsWinningticket)
+      public function destroy(Winningticket  $Winningticket)
       {
           // Si la eliminación tiene éxito, el método delete() devuelve true y entra a la condicion
-          if ($ModelsWinningticket->delete()) {
+          if ($Winningticket->delete()) {
               return response()->json([ //se devuelve una respuesta JSON con un código de estado HTTP 204  de éxito
                   'message' => 'Success'
               ], 204);

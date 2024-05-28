@@ -23,6 +23,7 @@ class UserResource extends JsonResource
             'email' => $this->email, 
             'password' => $this->password, 
             'post' => $this->post, 
+            'state' => $this->state, 
             'email_verified_at'=> $this->email_verified_at,
             'remember_token'=> $this->remember_token,
         ];
