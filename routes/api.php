@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/createuser', [LoginController::class, 'check_in']);
 
 Route::post('/login', [LoginController::class, 'login']);
+Route::get('/authentication', [LoginController::class, 'handle_authentication'])->middleware('auth:sanctum');;
 // Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth:sanctum');
 
 Route::apiResource('/users', UserController::class)->middleware('auth:sanctum');

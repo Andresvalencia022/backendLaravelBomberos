@@ -38,6 +38,25 @@ class LoginController extends Controller
     ]);
    } 
 
+
+   public function handle_authentication (){
+    
+     if (Auth::check()) {
+        //User autenticado 
+        $user = Auth::user();
+
+        return response()->json([
+            'user' =>   $user,
+            'message' => 'User is authenticated'
+        ]);
+     }else{
+        return response()->json([
+            'message' => 'Unauthenticated use'
+        ], 401);
+     }
+   }
+
+
    public function check_in (Request $request){
     //    $request->validate([
     //        'name' => 'required',   
