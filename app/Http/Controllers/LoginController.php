@@ -91,7 +91,7 @@ class LoginController extends Controller
         'email' => $request->email,
         'password' => $request->password,
         'post' => $request->post,
-        'state' => 1,
+        'state' => $request->state,
         'email_verified_at' => now(),
         'remember_token' => str::random(10)
     ]);
