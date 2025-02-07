@@ -14,6 +14,13 @@ class UserController extends Controller
         return UserResource::collection(User::latest()->paginate(5));
     }
 
+    
+    public function show(User $User)
+    {
+       //Busca un registro
+        return new UserResource($User);
+    }
+
     public function update (Request $request, User $User ){
         // Actualizar registro
          $User->update($request->only([

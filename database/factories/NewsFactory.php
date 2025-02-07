@@ -20,7 +20,7 @@ class NewsFactory extends Factory
         return [
             'title_news' => fake()->name(),
             'info' => fake()->text(),
-            'name_image' => fake()->name(),
+            'name_imagen' => fake()->name(),
             'video_name' => fake()->name(),
             'user_id' => User::pluck('id')->random(),
         ];

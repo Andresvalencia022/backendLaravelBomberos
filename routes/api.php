@@ -22,6 +22,7 @@ Route::get('/authentication', [LoginController::class, 'handle_authentication'])
 Route::apiResource('/users', UserController::class)->middleware('auth:sanctum');
 Route::apiResource('/event',  EventController::class)->middleware('auth:sanctum');
 Route::apiResource('/news',  NewsController::class)->middleware('auth:sanctum'); 
+ 
 Route::apiResource('/Winningticket', WinningticketController::class)->middleware('auth:sanctum');
 
 // Route::get('/user', [LoginController::class, 'handle'])->middleware('auth:sanctum');

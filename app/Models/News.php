@@ -13,7 +13,7 @@ class News extends Model
         'id',
         'title_news',
         'info',
-        'name_image',
+        'name_imagen',
         'video_name',
         'user_id',
     ];

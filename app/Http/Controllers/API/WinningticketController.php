@@ -33,12 +33,11 @@ class WinningticketController extends Controller
       }
   
   
-    //   public function show(ModelsWinningticket $ModelsWinningticket)
-    //   {
-    //       //Busca un registro
-    //       //Se crea una nueva instancia 
-    //       return new WinningticketResource($ModelsWinningticket);
-    //   }
+      public function show(Winningticket $Winningticket)
+      {
+          //Busca un registro
+          return new WinningticketResource($Winningticket);
+      }
   
   
       // Actualizar 

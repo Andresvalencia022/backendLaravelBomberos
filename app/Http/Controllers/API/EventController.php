@@ -29,14 +29,11 @@ class EventController  extends Controller
       return new EventResource($Event);
     }
     
-
-    // public function show(ModelsEvent $ModelsEvent)
-    // {
-    //    //Busca un registro
-    //    //Se crea una nueva instancia 
-    //    return new EventResource($ModelsEvent);
-    // }
-
+    public function show(Event $event)
+    {
+       //Busca un registro
+       return new EventResource($event);
+    }
 
     // Actualizar 
     public function update(Request $request, Event $event)

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title_news');
             $table->text('info');
-            $table->string('name_image');
+            $table->string('name_imagen')->nullable();
             $table->string('video_name')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
