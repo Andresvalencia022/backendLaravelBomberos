@@ -15,14 +15,12 @@ class NewsController extends Controller
 
     public function index()
     {
-        return NewsResource::collection(News::latest()->paginate(5));
+        return NewsResource::collection(News::with('user')->latest()->paginate(5));
     }
 
     //Registrar  
     public function store(Request $request)
     {
-
-        // dd($request->all());
         // Validar la solicitud
         $request->validate([
             'title_news' => 'required|string|max:255',
@@ -57,8 +55,8 @@ class NewsController extends Controller
         //         //Crear una nuevo Product y lo conserva en la base de datos.
         $News = News::create([
             'title_news' => $request->title_news,
-            'info' => $request->info,
-            // 'name_imagen' => $request->name_imagen,
+            // reemplazar todos los saltos de línea tipo \r\n por \n antes de guardarlos en la base de datos.
+            'info' => str_replace("\r\n", "\n", $request->info), 
             'name_imagen' => $imageName,
             'video_name' => $request->video_name,
             'user_id' => $request->user_id,
@@ -110,7 +108,7 @@ class NewsController extends Controller
             // Actualizar el campo 'name_imagen' con el nuevo nombre de la imagen
             $news->update([
                 'title_news' => $request->title_news,
-                'info' => $request->info,
+                'info' => str_replace("\r\n", "\n", $request->info), // Reemplaza \r\n por \n
                 'name_imagen' => $imageName, // Aquí se usa la variable
                 'video_name' => $request->video_name,
                 'user_id' => $request->user_id,

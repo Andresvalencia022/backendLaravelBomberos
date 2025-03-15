@@ -24,9 +24,14 @@ class User extends Authenticatable
         'remember_token'
     ];
 
-    public function events()
+    public function event()
     {
         return $this->hasMany(Event::class);
+    }
+     // Relación: un usuario tiene muchas noticias
+    public function new()
+    {
+        return $this->hasMany(News::class, 'user_id', 'id');
     }
 
 
@@ -53,4 +58,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
 }

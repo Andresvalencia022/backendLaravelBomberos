@@ -17,4 +17,9 @@ class News extends Model
         'video_name',
         'user_id',
     ];
+    // Relación: una noticia pertenece a un usuario
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

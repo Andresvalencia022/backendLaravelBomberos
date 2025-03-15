@@ -18,10 +18,11 @@ class NewsResource extends JsonResource
         return[
             'id' => $this->id, 
             'title_news' => $this->title_news, 
-            'info' => $this->info, 
+            'info' => nl2br(e($this->info)), 
             'name_imagen' => $this->name_imagen ? url('storage/images/' . $this->name_imagen) : null, 
             'video_name' => $this->video_name, 
             'user_id' => $this->user_id, 
+            'user_name' => $this->user->name ?? 'Usuario desconocido', // nombre del usuario
         ];
     }
 }
