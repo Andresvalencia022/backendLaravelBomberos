@@ -56,7 +56,7 @@ class NewsController extends Controller
         $News = News::create([
             'title_news' => $request->title_news,
             // reemplazar todos los saltos de línea tipo \r\n por \n antes de guardarlos en la base de datos.
-            'info' => str_replace("\r\n", "\n", $request->info), 
+            'info' => str_replace("\r\n", "\n", $request->info),
             'name_imagen' => $imageName,
             'video_name' => $request->video_name,
             'user_id' => $request->user_id,
@@ -122,8 +122,7 @@ class NewsController extends Controller
                 'user_id'
             ]));
         }
-        return new NewsResource( $news);
-
+        return new NewsResource($news);
     }
 
 
@@ -139,7 +138,7 @@ class NewsController extends Controller
             //Elimina el archivo del disk
             $disk->delete($file_path);
         }
-        
+
         // Si la eliminación tiene éxito, el método delete() devuelve true y entra a la condicion
         if ($news->delete()) {
             return response()->json([ //se devuelve una respuesta JSON con un código de estado HTTP 204  de éxito
@@ -150,5 +149,25 @@ class NewsController extends Controller
         return response()->json([
             'message' => 'Not found'
         ], 404);
+    }
+
+    public function publicNews()
+    {
+        return NewsResource::collection(News::latest()->paginate(2));
+    }
+
+    //Buscar News publico
+    public function showPublicNews($id)
+    {
+        // Busca el registro en la base de datos
+        $news = News::find($id);
+
+        if (!$news) {
+            return response()->json([
+                'message' => 'Noticia no encontrada'
+            ], 404);
+        }
+
+        return new NewsResource($news);
     }
 }

@@ -71,5 +71,25 @@ class EventController  extends Controller
 
     }
 
+    public function publicEvent(){
+        return EventResource::collection(Event::latest()->paginate(2));
+    } 
+
+    //Buscar Evento publico
+    public function showPublicEvent($id)
+    {
+
+           // Busca el registro en la base de datos
+           $event = Event::find($id);
+
+           if (!$event) {
+               return response()->json([
+                   'message' => 'Evento no encontrado'
+               ], 404);
+           }
+
+       return new EventResource($event);
+    }
+
 
 }
