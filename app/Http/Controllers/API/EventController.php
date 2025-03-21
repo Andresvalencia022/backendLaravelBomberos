@@ -19,8 +19,8 @@ class EventController  extends Controller
        //Crear una nuevo Product y lo conserva en la base de datos.
        $Event = Event::create([
         'event_name' => $request->event_name,
-        'start_date' => $request->start_date,
-        'end_date' => $request->end_date,
+        'date' => $request->date,
+        'Location' => $request->Location,
         'description' => $request->description,
         'time' => $request->time,
         'user_id' => $request->user_id,
@@ -45,8 +45,8 @@ class EventController  extends Controller
         // Actualizar registro
         $event->update($request->only([
             'event_name',
-            'start_date',
-            'end_date',
+            'date',
+            'Location',
             'time',
             'description',
             'user_id',

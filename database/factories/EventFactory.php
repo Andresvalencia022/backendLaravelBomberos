@@ -19,8 +19,8 @@ class EventFactory extends Factory
     {
         return [
             'event_name' => fake()->name(),
-            'start_date' => fake()->date(),
-            'end_date' => fake()->date(),
+            'date' => fake()->date(),
+            'Location' => fake()->name(),
             'time' => fake()->time(),
             'description' => fake()->text(),
             'user_id' => User::pluck('id')->random(),
