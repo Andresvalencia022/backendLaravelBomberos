@@ -108,12 +108,16 @@ class NewsController extends Controller
             // Actualizar el campo 'name_imagen' con el nuevo nombre de la imagen
             $news->update([
                 'title_news' => $request->title_news,
-                'info' => str_replace("\r\n", "\n", $request->info), // Reemplaza \r\n por \n
+                'info' => str_replace(["\r\n", "\r"], "\n", $request->info),// Normaliza saltos de línea
                 'name_imagen' => $imageName, // Aquí se usa la variable
                 'video_name' => $request->video_name,
                 'user_id' => $request->user_id,
             ]);
         } else {
+            $request->merge([
+                'info' => str_replace(["\r\n", "\r"], "\n", $request->info),
+            ]);
+              
             // Actualizar registro
             $news->update($request->only([
                 'title_news',

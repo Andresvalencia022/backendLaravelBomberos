@@ -20,8 +20,8 @@ class EventController  extends Controller
        $Event = Event::create([
         'event_name' => $request->event_name,
         'date' => $request->date,
-        'Location' => $request->Location,
-        'description' => $request->description,
+        'location' => $request->location,
+        'description' => str_replace("\r\n", "\n", $request->description),
         'time' => $request->time,
         'user_id' => $request->user_id,
       ]);
@@ -41,12 +41,16 @@ class EventController  extends Controller
 
           // Debugging: Verificar el modelo recibido
         logger()->info('Event model before update:', $event->toArray());
+        
+        $request->merge([
+            'description' => str_replace(["\r\n", "\r"], "\n", $request->description),
+        ]);
 
         // Actualizar registro
         $event->update($request->only([
             'event_name',
             'date',
-            'Location',
+            'location',
             'time',
             'description',
             'user_id',

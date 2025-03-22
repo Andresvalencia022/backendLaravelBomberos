@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('event_name');
             $table->date('date');
-            $table->string('Location');
+            $table->string('location');
             $table->time('time');
             $table->text('description');
             $table->unsignedBigInteger('user_id');
