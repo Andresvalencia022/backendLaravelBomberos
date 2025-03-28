@@ -11,22 +11,32 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/createuser', [LoginController::class, 'check_in']);
-
 Route::post('/login', [LoginController::class, 'login']);
-Route::get('/authentication', [LoginController::class, 'handle_authentication'])->middleware('auth:sanctum');;
-// Route::put('/users/{user}', [UserController::class, 'update'])->middleware('auth:sanctum');
 
-//private
-Route::apiResource('/users', UserController::class)->middleware('auth:sanctum');
-Route::apiResource('/event',  EventController::class)->middleware('auth:sanctum');
-Route::apiResource('/news',  NewsController::class)->middleware('auth:sanctum'); 
-Route::apiResource('/Winningticket', WinningticketController::class)->middleware('auth:sanctum');
 
-//public
-Route::get('/public/event', [EventController::class, 'publicEvent']);
-Route::get('/public/event/{id}', [EventController::class, 'showPublicEvent']);
-Route::get('/public/news', [NewsController::class, 'publicNews']);
-Route::get('/public/news/{id}', [NewsController::class, 'showPublicNews']);
+// Rutas privadas con autenticación
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/authentication', [LoginController::class, 'handle_authentication']);
+    
+    Route::apiResource('/users', UserController::class);
+    Route::apiResource('/event', EventController::class);
+    Route::apiResource('/news', NewsController::class);
+    Route::apiResource('/Winningticket', WinningticketController::class);
+});
+
+//públicos
+Route::prefix('/public')->group( function(){
+    //Eventos
+    Route::get('/event', [EventController::class, 'publicEvent']);
+    Route::get('/event/{id}', [EventController::class, 'showPublicEvent']);
+    //Noticias
+    Route::get('/news', [NewsController::class, 'publicNews']);
+    Route::get('/news/{id}', [NewsController::class, 'showPublicNews']);
+    //Ganadores
+    Route::get('/WinningNumber', [WinningticketController::class, 'WinningNumber']);
+    Route::get('/winners', [WinningticketController::class, 'winners']);
+});
+
 
 
 // Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,10 +19,10 @@ class WinningticketResource extends JsonResource
          return[
             'id' => $this->id, 
             'winning_number' => $this->winning_number, 
-            'description' => $this->description, 
+            'description' => nl2br(e($this->description)), 
             'phone' => $this->phone, 
             'winning_name' => $this->winning_name, 
-            'game_date' => $this->game_date, 
+            'game_date' => Carbon::parse($this->game_date)->format('Y-m-d'),
         ];
     }
 }

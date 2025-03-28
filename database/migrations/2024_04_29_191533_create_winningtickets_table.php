@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('winningtickets', function (Blueprint $table) {
             $table->id();
             $table->integer('winning_number');
-            $table->string('description');
+            $table->mediumText('description');
             $table->string('winning_name');
             $table->string('phone'); //telefono 
             $table->date('game_date');

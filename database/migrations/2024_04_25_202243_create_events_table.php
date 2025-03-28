@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('location');
             $table->time('time');
-            $table->text('description');
+            $table->mediumText('description');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
